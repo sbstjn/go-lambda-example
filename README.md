@@ -13,6 +13,7 @@ $ > go get github.com/stretchr/testify/assert
 ```bash
 # Build binary
 $ > make build
+
 # Test Go Code
 $ > make test
 ```
