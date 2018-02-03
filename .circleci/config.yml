@@ -12,12 +12,8 @@ jobs:
           keys:
             - v1-pkg-cache
 
-      - run: |
-          sudo apt-get -y -qq update
-          sudo apt-get -y -qq install python3.4-dev
-          curl -O https://bootstrap.pypa.io/get-pip.py
-          python3.4 get-pip.py --user
-          pip install awscli --upgrade --user
+      - run: sudo apt-get -y -qq install awscli
+      - run: aws --version
       - run: touch .env
       - run: make install
 
@@ -29,6 +25,7 @@ jobs:
           paths:
             - "/go/pkg"
 
+      - run: make configure
       - run: make package
       - run: make deploy
 
