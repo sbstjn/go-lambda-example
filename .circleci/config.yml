@@ -24,7 +24,6 @@ jobs:
           paths:
             - "/go/pkg"
 
-      - run: make configure
       - run: make package
       - run: make deploy
 
