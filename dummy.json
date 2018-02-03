@@ -1,0 +1,27 @@
+{
+  "Stacks": [
+      {
+          "StackId": "arn:aws:cloudformation:us-west-1:198537873635:stack/example-go-api/eb1394e0-074f-11e8-814d-50fae8e994f2", 
+          "LastUpdatedTime": "2018-02-03T22:22:37.291Z", 
+          "Tags": [], 
+          "Outputs": [
+              {
+                  "Description": "URL for HTTPS Endpoint", 
+                  "OutputKey": "URL", 
+                  "OutputValue": "https://to23rx1sik.execute-api.us-west-1.amazonaws.com/Prod"
+              }
+          ], 
+          "EnableTerminationProtection": false, 
+          "CreationTime": "2018-02-01T13:00:46.349Z", 
+          "Capabilities": [
+              "CAPABILITY_IAM"
+          ], 
+          "StackName": "example-go-api", 
+          "NotificationARNs": [], 
+          "StackStatus": "UPDATE_COMPLETE", 
+          "DisableRollback": false, 
+          "ChangeSetId": "arn:aws:cloudformation:us-west-1:198537873635:changeSet/awscli-cloudformation-package-deploy-1517696545/4acd77e8-4917-49d6-8377-eb02c49d835d", 
+          "RollbackConfiguration": {}
+      }
+  ]
+}

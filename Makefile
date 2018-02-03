@@ -52,4 +52,4 @@ outputs:
 		@make describe | jq -r '.Stacks[0].Outputs'
 
 url:
-		@make outputs | jq -r '.[0].OutputValue' -j
+		@make describe | jq -r ".Stacks[0].Outputs[0].OutputValue" -j
