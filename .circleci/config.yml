@@ -14,6 +14,7 @@ jobs:
 
       - run: touch .env
       - run: sudo apt-get install python-yaml python-dev python-pip
+      - run: pip install pyyaml --upgrade --user
       - run: pip install awscli --upgrade --user
 
       - run: aws --version
