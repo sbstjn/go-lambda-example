@@ -8,21 +8,11 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - v1-pkg-cache
-
       - run: touch .env
 
       - run: make install
       - run: make test
       - run: make build
-
-      - save_cache:
-          key: v1-pkg-cache
-          paths:
-            - "/go/pkg"
-
       - run: make package
       - run: make deploy
       - run: make describe
