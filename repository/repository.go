@@ -14,6 +14,7 @@ func all() []Person {
 		Person{"b1", "Horst", 42},
 		Person{"c2", "Frank", 28},
 		Person{"d1", "Anton", 31},
+		Person{"e3", "Steve", 34},
 	}
 }
 
