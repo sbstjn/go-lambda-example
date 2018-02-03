@@ -13,7 +13,7 @@ jobs:
             - v1-pkg-cache
 
       - run: touch .env
-      - run: sudo apt-get install python-dev
+      - run: sudo apt-get install python-dev python-pip
       - run: pip install awscli --upgrade --user
 
       - run: aws --version
