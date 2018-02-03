@@ -19,6 +19,10 @@ jobs:
           name: Install Dependencies
           command: go get -v -t -d ./...
 
+      - run:
+          name: Create .env file
+          command: touch .env
+
       - persist_to_workspace:
           root: ~/repo
           <<: *whitelist
