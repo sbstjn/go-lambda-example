@@ -1,11 +1,45 @@
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/golang:1.8
+
+whitelist: &whitelist
+  paths:
+    - "*.*"
 version: 2
 jobs:
+  checkout:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Dependencies
+          command: go get -v -t -d ./...
+
+      - persist_to_workspace:
+          root: ~/repo
+          <<: *whitelist
+
+  test:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Run tests
+          command: make test
+
+
+workflows:
+  version: 2
+
   build:
-    docker:
-      - image: circleci/golang:latest
-  working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
-  steps:
-    - checkout
-    # specify any bash command here prefixed with `run: `
-    - run: go get -v -t -d ./...
-    - run: make test
+    jobs:
+      - checkout
+      - test:
+          requires:
+            - checkout
