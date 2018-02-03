@@ -14,12 +14,8 @@ jobs:
 
       - run: touch .env
       - run: make install
-      - run: go get github.com/jstemmer/go-junit-report
 
-      - run:
-          name: Run unit tests
-          command: make test
-      
+      - run: make test      
       - run: make build
 
       - save_cache:
@@ -27,6 +23,13 @@ jobs:
           paths:
             - "/go/pkg"
 
+      - run: make configure
+      - run: make package
+      - run: make deploy
+
       - store_artifacts:
           path: /go/src/github.com/sbstjn/go-lambda-example/dist
-          destination: dist
+          destination: binaries
+      - store_artifacts:
+          path: /go/src/github.com/sbstjn/go-lambda-example/package.yml
+          destination: package.yml
