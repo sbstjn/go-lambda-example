@@ -20,12 +20,12 @@ jobs:
           command: go get -v -t -d ./...
 
       - run:
-          name: Install packages
-          command: make install
-
-      - run:
           name: Create .env file
           command: touch .env
+
+      - run:
+          name: Install packages
+          command: make install
 
       - persist_to_workspace:
           root: ~/repo
