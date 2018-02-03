@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.8
+      - image: ingojaeckel/golang-awscli
     working_directory: /go/src/github.com/sbstjn/go-lambda-example
 
     steps:
@@ -13,7 +13,6 @@ jobs:
             - v1-pkg-cache
 
       - run: touch .env
-      - run: sudo apt-get -y -qq install awscli
       - run: aws --version
 
       - run: make install
