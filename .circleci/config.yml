@@ -15,7 +15,6 @@ jobs:
       - run: make build
       - run: make package
       - run: make deploy
-      - run: make describe
       - run: make describe | jq -r ".Stacks[0].Outputs[0].OutputValue" -j > endpoint.txt
 
       - store_artifacts:
