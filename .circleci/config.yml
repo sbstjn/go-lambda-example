@@ -25,6 +25,7 @@ jobs:
 
       - run: make package
       - run: make deploy
+      - run: make describe
       - run: make url > endpoint.txt
 
       - store_artifacts:
