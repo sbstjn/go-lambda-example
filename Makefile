@@ -9,10 +9,16 @@ build: clean
 			GOOS=linux go build -o dist/handler/$$dir github.com/sbstjn/go-lambda-example/handler/$$dir; \
 		done
 
+run:
+		aws-sam-local local start-api
+
 install:
 		go get github.com/aws/aws-lambda-go/events
 		go get github.com/aws/aws-lambda-go/lambda
 		go get github.com/stretchr/testify/assert
+
+install-dev:
+		go get github.com/awslabs/aws-sam-local
 
 test:
 		go test ./... --cover
@@ -44,3 +50,6 @@ describe:
 
 outputs:
 		@make describe | jq -r '.Stacks[0].Outputs'
+
+url:
+		@make outputs | jq -r '.[0].OutputValue'
