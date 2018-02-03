@@ -16,7 +16,7 @@ jobs:
       - run: make package
       - run: make deploy
       - run: make describe
-      - run: make url > endpoint.txt
+      - run: make describe | jq -r ".Stacks[0].Outputs[0].OutputValue" -j
 
       - store_artifacts:
           path: /go/src/github.com/sbstjn/go-lambda-example/dist
