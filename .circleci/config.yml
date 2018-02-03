@@ -18,6 +18,8 @@ jobs:
       - run: pip install awscli --upgrade --user
 
       - run: pip list
+      - run: python -m site &> /dev/null && PATH="$PATH:`python -m site --user-base`/bin"
+
 
       - run: aws --version
 
