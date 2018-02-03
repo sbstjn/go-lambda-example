@@ -9,6 +9,11 @@ build: clean
 			GOOS=linux go build -o dist/handler/$$dir github.com/sbstjn/go-lambda-example/handler/$$dir; \
 		done
 
+install:
+		go get github.com/aws/aws-lambda-go/events
+		go get github.com/aws/aws-lambda-go/lambda
+		go get github.com/stretchr/testify/assert
+
 test:
 		go test ./... --cover
 
