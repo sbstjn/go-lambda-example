@@ -17,6 +17,8 @@ jobs:
       - run: pip install pyyaml --upgrade --user
       - run: pip install awscli --upgrade --user
 
+      - run: pip list
+
       - run: aws --version
 
       - run: make install
