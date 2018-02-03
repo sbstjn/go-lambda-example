@@ -6,6 +6,7 @@ defaults: &defaults
 whitelist: &whitelist
   paths:
     - "*.*"
+    - "*"
 version: 2
 jobs:
   checkout:
@@ -32,7 +33,6 @@ jobs:
       - run:
           name: Run tests
           command: make test
-
 
 workflows:
   version: 2
