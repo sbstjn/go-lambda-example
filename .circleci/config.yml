@@ -31,7 +31,7 @@ jobs:
 
       - store_artifacts:
           path: /go/src/github.com/sbstjn/go-lambda-example/dist
-          destination: binaries
+          destination: dist
       - store_artifacts:
           path: /go/src/github.com/sbstjn/go-lambda-example/package.yml
           destination: package.yml
