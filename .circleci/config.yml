@@ -1,54 +1,28 @@
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: circleci/golang:1.8
-
-whitelist: &whitelist
-  paths:
-    - "/go"
-    - "*.*"
-    - "*"
 version: 2
 jobs:
-  checkout:
-    <<: *defaults
-
-    steps:
-      - checkout
-
-      - run:
-          name: Install Dependencies
-          command: go get -v -t -d ./...
-
-      - run:
-          name: Create .env file
-          command: touch .env
-
-      - run:
-          name: Install packages
-          command: make install
-
-      - persist_to_workspace:
-          root: ~/repo
-          <<: *whitelist
-
-  test:
-    <<: *defaults
-
-    steps:
-      - attach_workspace:
-          at: ~/repo
-
-      - run:
-          name: Run tests
-          command: make test
-
-workflows:
-  version: 2
-
   build:
-    jobs:
+    docker:
+      - image: circleci/golang:1.8
+    working_directory: /go/src/github.com/sbstjn/go-lambda-example
+
+    steps:
       - checkout
-      - test:
-          requires:
-            - checkout
+
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
+
+      - run: touch .env
+      - run: make install
+      - run: go get github.com/jstemmer/go-junit-report
+
+      - run:
+          name: Run unit tests
+          command: make test
+      
+      - run: make build
+
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - "/go/pkg"
