@@ -13,13 +13,6 @@ jobs:
             - v1-pkg-cache
 
       - run: touch .env
-      - run: sudo apt-get install python-yaml python-dev python-pip
-      - run: pip install pyyaml --upgrade --user
-      - run: pip install awscli --upgrade --user
-
-      - run: pip list
-      - run: python -m site &> /dev/null && PATH="$PATH:`python -m site --user-base`/bin"
-
 
       - run: aws --version
 
