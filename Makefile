@@ -1,34 +1,33 @@
-AWS_ACCOUNT_ID=1234567890
-AWS_BUCKET_NAME=your-bucket-name-for-cloudformation-package-data
-AWS_STACK_NAME=your-cloudformation-stack-name
-AWS_REGION=us-west-1
+include .env
 
 clean:
-		@rm -rf .build
-		@mkdir -p .build
+		@rm -rf dist
+		@mkdir -p dist
 
 build: clean
-		@GOOS=linux go build -o .build/main
+		@for dir in `ls handler`; do \
+			GOOS=linux go build -o dist/handler/$$dir github.com/sbstjn/go-lambda-example/handler/$$dir; \
+		done
 
 test:
-		go test
+		go test ./... --cover
 
 configure:
-		@aws s3api create-bucket \
+		aws s3api create-bucket \
 			--bucket $(AWS_BUCKET_NAME) \
 			--region $(AWS_REGION) \
 			--create-bucket-configuration LocationConstraint=$(AWS_REGION)
 
-package:
+package: build
 		@aws cloudformation package \
 			--template-file template.yml \
 			--s3-bucket $(AWS_BUCKET_NAME) \
 			--region $(AWS_REGION) \
-			--output-template-file .build/packaged.yml
+			--output-template-file package.yml
 
 deploy:
 		@aws cloudformation deploy \
-			--template-file .build/packaged.yml \
+			--template-file package.yml \
 			--region $(AWS_REGION) \
 			--capabilities CAPABILITY_IAM \
 			--stack-name $(AWS_STACK_NAME)
@@ -39,4 +38,4 @@ describe:
 			--stack-name $(AWS_STACK_NAME) \
 
 outputs:
-	 @make describe | jq -r '.Stacks[0].Outputs'
+		@make describe | jq -r '.Stacks[0].Outputs'

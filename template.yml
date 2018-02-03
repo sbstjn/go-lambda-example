@@ -1,18 +1,30 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  HelloFunction:
+  People:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: .build/main
+      Handler: dist/handler/people
       Runtime: go1.x
       Tracing: Active
       Events:
         GetEvent:
           Type: Api
           Properties:
-            Path: /
-            Method: post
+            Path: /people
+            Method: get
+  Person:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/handler/person
+      Runtime: go1.x
+      Tracing: Active
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /person/{id}
+            Method: get
 Outputs:
   URL:
     Description: URL for HTTPS Endpoint

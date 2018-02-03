@@ -20,15 +20,13 @@ $ > make test
 
 ## Deploy
 
-### Edit Makefile
+### Create .env
 
-```make
+```bash
 AWS_ACCOUNT_ID=1234567890
 AWS_BUCKET_NAME=your-bucket-name-for-cloudformation-package-data
 AWS_STACK_NAME=your-cloudformation-stack-name
 AWS_REGION=us-west-1
-
-[…]
 ```
 
 ### Install AWS CLI
@@ -63,8 +61,11 @@ $ > make outputs
   }
 ]
 
-$ > curl -X POST -d "Woohooo 🎉" https://random-id.execute-api.us-west-1.amazonaws.com/Stage
+$ > curl https://random-id.execute-api.us-west-1.amazonaws.com/Stage/people
 
-You sent some data 😍
-Woohooo 🎉
+{"data":[{"id":"d1","name":"Anton","age":31},{"id":"c2","name":"Frank","age":28},{"id":"b1","name":"Horst","age":42}]}
+
+$ > curl https://random-id.execute-api.us-west-1.amazonaws.com/Stage/person/b1
+
+{"data":{"id":"b1","name":"Horst","age":42}}
 ```
