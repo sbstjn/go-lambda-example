@@ -26,3 +26,7 @@ jobs:
           key: v1-pkg-cache
           paths:
             - "/go/pkg"
+
+      - store_artifacts:
+          path: /go/src/github.com/sbstjn/go-lambda-example/dist
+          destination: dist
