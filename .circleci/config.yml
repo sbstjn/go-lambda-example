@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.8
+      - image: spbk/circleci-golang
     working_directory: /go/src/github.com/sbstjn/go-lambda-example
 
     steps:
