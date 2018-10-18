@@ -6,7 +6,7 @@ clean:
 
 build: clean
 		@for dir in handler/*; do \
-			GOOS=linux go build -o dist/handler/$$dir ./dist/handler/$$dir; \
+			GOOS=linux go build -x -v -o dist/handler/$$dir ./$$dir; \
 		done
 
 run:
