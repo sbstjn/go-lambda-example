@@ -2,6 +2,8 @@
 
 ## Dependecies
 
+(tip: if you append to the path `...` when you `go get` this package you will already have all dependencies)
+
 ```bash
 $ > go get -u ./...
 ```
