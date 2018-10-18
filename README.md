@@ -2,10 +2,10 @@
 
 ## Dependecies
 
+(tip: if you append to the path `...` when you `go get` this package you will already have all dependencies)
+
 ```bash
-$ > go get github.com/aws/aws-lambda-go/events
-$ > go get github.com/aws/aws-lambda-go/lambda
-$ > go get github.com/stretchr/testify/assert
+$ > go get -u ./...
 ```
 
 ## Build
