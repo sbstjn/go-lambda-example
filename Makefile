@@ -6,11 +6,11 @@ clean:
 
 build: clean
 		@for dir in handler/*; do \
-			GOOS=linux go build -x -v -o dist/handler/$$dir ./$$dir; \
+			GOOS=linux go build -x -v -o dist/$$dir ./$$dir; \
 		done
 
 run:
-		aws-sam-local local start-api
+		sam local start-api
 
 install:
 		go get -u ./...
